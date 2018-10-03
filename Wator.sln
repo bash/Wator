@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wator.Visualization", "Wator.Visualization\Wator.Visualization.csproj", "{8FF770A0-8649-43F0-B1AF-474E64DAD374}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wator.Simulation", "Wator.Simulation\Wator.Simulation.csproj", "{BC058233-3B36-47D7-AAA8-307042FAC12E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wator.Simulation.Test", "Wator.Simulation.Test\Wator.Simulation.Test.csproj", "{9A48E6A2-48A3-47BF-89B7-F1F586EE9752}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8FF770A0-8649-43F0-B1AF-474E64DAD374}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FF770A0-8649-43F0-B1AF-474E64DAD374}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FF770A0-8649-43F0-B1AF-474E64DAD374}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FF770A0-8649-43F0-B1AF-474E64DAD374}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC058233-3B36-47D7-AAA8-307042FAC12E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC058233-3B36-47D7-AAA8-307042FAC12E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC058233-3B36-47D7-AAA8-307042FAC12E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC058233-3B36-47D7-AAA8-307042FAC12E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A48E6A2-48A3-47BF-89B7-F1F586EE9752}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A48E6A2-48A3-47BF-89B7-F1F586EE9752}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A48E6A2-48A3-47BF-89B7-F1F586EE9752}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A48E6A2-48A3-47BF-89B7-F1F586EE9752}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
