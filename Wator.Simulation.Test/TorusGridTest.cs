@@ -56,5 +56,16 @@ namespace Wator.Simulation.Test
 
             Assert.Equal(expected, occupiedCells);
         }
+
+        [Fact]
+        public void EmptyCellWorks()
+        {
+            var grid = new TorusGrid(100, 100);
+            
+            grid.SetCell(new Position(42, 42), Substitute.For<IOrganism>());
+            grid.EmptyCell(new Position(42, 42));
+            
+            Assert.Equal(0, grid.GetOccupiedCells().Count());
+        }
     }
 }

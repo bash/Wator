@@ -58,7 +58,7 @@ namespace Wator.Simulation
 
         public void EmptyCell(Position position)
         {
-            throw new NotImplementedException();
+            occupiedCells.Remove(position);
         }
     }
 }
