@@ -33,5 +33,28 @@ namespace Wator.Simulation.Test
 
             Assert.Throws<ArgumentOutOfRangeException>(() => grid.SetCell(position, organism));
         }
+
+        [Fact]
+        public void OccupiedCellsReturnsAddedOrganisms()
+        {
+            var grid = new TorusGrid(100, 100);
+
+            var organism1 = Substitute.For<IOrganism>();
+            var position1 = new Position(30, 30);
+            var organism2 = Substitute.For<IOrganism>();
+            var position2 = new Position(10, 20);
+
+            grid.SetCell(position1, organism1);
+            grid.SetCell(position2, organism2);
+
+            var occupiedCells = grid.GetOccupiedCells().ToList();
+            var expected = new List<Occupied>(new Occupied[]
+            {
+                new Occupied(position1, organism1),
+                new Occupied(position2, organism2),
+            });
+
+            Assert.Equal(expected, occupiedCells);
+        }
     }
 }

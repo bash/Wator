@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
+using System.Linq;
 using Wator.Organism;
 using Wator.Simulation.GridCell;
 
@@ -15,7 +17,7 @@ namespace Wator.Simulation
 
         public int Height { get; }
 
-        private Dictionary<Position, IOrganism> occupiedCells = new Dictionary<Position, IOrganism>();
+        private readonly Dictionary<Position, IOrganism> occupiedCells = new Dictionary<Position, IOrganism>();
 
         public TorusGrid(int width, int height)
         {
@@ -38,9 +40,10 @@ namespace Wator.Simulation
             throw new NotImplementedException();
         }
 
+        [Pure]
         public IEnumerable<Occupied> GetOccupiedCells()
         {
-            throw new NotImplementedException();
+            return occupiedCells.Select(pair => new Occupied(pair.Key, pair.Value));
         }
 
         public void SetCell(Position position, IOrganism organism)
@@ -50,7 +53,7 @@ namespace Wator.Simulation
                 throw new ArgumentOutOfRangeException(nameof(position), "position must be inside grid");
             }
 
-            throw new NotImplementedException();
+            occupiedCells.Add(position, organism);
         }
 
         public void EmptyCell(Position position)
