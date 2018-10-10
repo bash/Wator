@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Wator.Organism;
 using Wator.Simulation.GridCell;
@@ -11,7 +12,10 @@ namespace Wator.Simulation
     public class TorusGrid : IGrid
     {
         public int Width { get; }
+
         public int Height { get; }
+
+        private Dictionary<Position, IOrganism> occupiedCells = new Dictionary<Position, IOrganism>();
 
         public TorusGrid(int width, int height)
         {
@@ -19,12 +23,12 @@ namespace Wator.Simulation
             {
                 throw new ArgumentOutOfRangeException(nameof(width), "width must be greater than zero");
             }
-            
+
             if (height <= 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(height), "height must be greater than zero");
             }
-            
+
             Width = width;
             Height = height;
         }
@@ -41,6 +45,11 @@ namespace Wator.Simulation
 
         public void SetCell(Position position, IOrganism organism)
         {
+            if (position.X >= Width || position.Y >= Height)
+            {
+                throw new ArgumentOutOfRangeException(nameof(position), "position must be inside grid");
+            }
+
             throw new NotImplementedException();
         }
 
