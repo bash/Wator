@@ -20,12 +20,17 @@ namespace Wator.Simulation
             throw new System.NotImplementedException();
         }
 
-        public void SetCell(Position position, OrganismKind organismKind)
+        public void AddOrganism(Position position, OrganismKind organismKind)
         {
             throw new System.NotImplementedException();
         }
 
-        public void EmptyCell(Position position)
+        public void RemoveOrganism(Position position)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public IEnumerable<Cell.Organism> GetOrganism()
         {
             throw new System.NotImplementedException();
         }

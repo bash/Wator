@@ -20,8 +20,8 @@ namespace Wator.Simulation
 
         IEnumerable<Occupied> GetOccupiedCells();
 
-        void AddOrganism(Position position, IOrganism organism);
+        void SetCell(Position position, IOrganism organism);
 
-        void RemoveOrganism(Position position);
+        void EmptyCell(Position position);
     }
 }

@@ -8,7 +8,7 @@ namespace Wator.Organism
 
         public IEnumerable<IAction> Step()
         {
-            yield return new Die();
+            throw new System.NotImplementedException();
         }
     }
 }

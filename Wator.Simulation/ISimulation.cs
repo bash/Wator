@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using Wator.Organism;
+
 namespace Wator.Simulation
 {
     public interface ISimulation
@@ -16,5 +19,11 @@ namespace Wator.Simulation
         /// Advances the simulation by one step
         /// </summary>
         void Step();
+
+        void AddOrganism(Position position, OrganismKind organismKind);
+
+        void RemoveOrganism(Position position);
+
+        IEnumerable<Cell.Organism> GetOrganism();
     }
 }

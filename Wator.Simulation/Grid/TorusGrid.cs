@@ -31,22 +31,22 @@ namespace Wator.Simulation
 
         public IEnumerable<IGridCell> GetNeighbours(Position position)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public IEnumerable<Occupied> GetOccupiedCells()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public void AddOrganism(Position position, IOrganism organism)
+        public void SetCell(Position position, IOrganism organism)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public void RemoveOrganism(Position position)
+        public void EmptyCell(Position position)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }
