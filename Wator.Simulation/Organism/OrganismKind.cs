@@ -1,4 +1,4 @@
-namespace Wator.Organism
+namespace Wator.Simulation.Organism
 {
     public enum OrganismKind
     {

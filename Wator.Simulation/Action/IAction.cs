@@ -1,4 +1,4 @@
-namespace Wator.Organism
+namespace Wator.Simulation.Action
 {
     public interface IAction
     {

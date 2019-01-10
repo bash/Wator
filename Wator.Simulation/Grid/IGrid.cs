@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using Wator.Organism;
 using Wator.Simulation.GridCell;
+using Wator.Simulation.Organism;
 
-namespace Wator.Simulation
+namespace Wator.Simulation.Grid
 {
     public interface IGrid
     {

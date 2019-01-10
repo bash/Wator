@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using Wator.Simulation.Action;
 
-namespace Wator.Organism
+namespace Wator.Simulation.Organism
 {
     public interface IOrganism
     {

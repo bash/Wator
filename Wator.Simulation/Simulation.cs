@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Wator.Organism;
+using Wator.Simulation.Organism;
 
 namespace Wator.Simulation
 {

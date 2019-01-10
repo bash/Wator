@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSubstitute;
-using Wator.Organism;
 using Wator.Simulation.GridCell;
+using Wator.Simulation.Organism;
 using Xunit;
 
 namespace Wator.Simulation.Test

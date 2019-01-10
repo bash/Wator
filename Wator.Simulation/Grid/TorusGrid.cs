@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
-using Wator.Organism;
+using Wator.Simulation.Grid;
 using Wator.Simulation.GridCell;
+using Wator.Simulation.Organism;
 
 namespace Wator.Simulation
 {

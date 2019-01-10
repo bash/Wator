@@ -1,6 +1,6 @@
 using Wator.Simulation.Cell;
 
-namespace Wator.Organism
+namespace Wator.Simulation.Action
 {
     internal class Move : IAction
     {
