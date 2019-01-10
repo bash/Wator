@@ -7,7 +7,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Wator.Simulation\Wator.Simulation.csproj" />
-      <ProjectReference Include="..\Wator\Wator.csproj" />
     </ItemGroup>
 
 </Project>
