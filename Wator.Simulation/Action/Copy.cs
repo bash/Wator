@@ -1,12 +1,10 @@
-using Wator.Simulation.Cell;
-
 namespace Wator.Simulation.Action
 {
     internal class Copy
     {
-        public ICell Destination { get; }
+        public Position Destination { get; }
 
-        public Copy(ICell destination)
+        public Copy(Position destination)
         {
             Destination = destination;
         }

@@ -20,7 +20,7 @@ namespace Wator.Simulation
             throw new System.NotImplementedException();
         }
 
-        public void AddOrganism(Position position, OrganismKind organismKind)
+        public void AddOrganism(Position position, IOrganism organism)
         {
             throw new System.NotImplementedException();
         }
@@ -30,7 +30,7 @@ namespace Wator.Simulation
             throw new System.NotImplementedException();
         }
 
-        public IEnumerable<Cell.Organism> GetOrganism()
+        public IEnumerable<(Position, IOrganism)> GetOrganisms()
         {
             throw new System.NotImplementedException();
         }

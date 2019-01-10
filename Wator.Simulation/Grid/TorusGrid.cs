@@ -36,7 +36,7 @@ namespace Wator.Simulation
             Height = height;
         }
 
-        public IEnumerable<IGridCell> GetNeighbours(Position position)
+        public IEnumerable<(Position, IOrganism?)> GetNeighbours(Position position)
         {
             throw new NotImplementedException();
         }

@@ -3,7 +3,7 @@ using Wator.Simulation.Action;
 
 namespace Wator.Simulation.Organism
 {
-    internal class Shark : IOrganism
+    public class Shark : IOrganism
     {
         public OrganismKind OrganismKind => OrganismKind.Shark;
 

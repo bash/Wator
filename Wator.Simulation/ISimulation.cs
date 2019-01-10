@@ -20,10 +20,10 @@ namespace Wator.Simulation
         /// </summary>
         void Step();
 
-        void AddOrganism(Position position, OrganismKind organismKind);
+        void AddOrganism(Position position, IOrganism organism);
 
         void RemoveOrganism(Position position);
 
-        IEnumerable<Cell.Organism> GetOrganism();
+        IEnumerable<(Position, IOrganism)> GetOrganisms();
     }
 }

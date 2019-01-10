@@ -1,12 +1,10 @@
-using Wator.Simulation.Cell;
-
 namespace Wator.Simulation.Action
 {
     internal class Move : IAction
     {
-        public ICell Destination { get; }
+        public Position Destination { get; }
 
-        public Move(ICell destination)
+        public Move(Position destination)
         {
             Destination = destination;
         }
