@@ -59,9 +59,6 @@ namespace Wator.Simulation
             throw new NotImplementedException();
         }
 
-        public GridCell? GetCell(Position position)
-        {
-            throw new NotImplementedException();
-        }
+        public GridCell? GetCell(Position position) => occupiedCells[position];
     }
 }
