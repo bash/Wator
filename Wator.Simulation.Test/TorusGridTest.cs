@@ -68,5 +68,21 @@ namespace Wator.Simulation.Test
 
             Assert.Equal(0, grid.GetOccupiedCells().Count());
         }
+
+        [Fact]
+        public void MoveCellWorks()
+        {
+            var grid = new TorusGrid(100, 100);
+            var cell = new GridCell(OrganismKind.Fish, Substitute.For<IOrganism>());
+            var firstPosition = new Position(30, 30);
+            var secondPosition = new Position(10, 10);
+
+            grid.SetCell(firstPosition, cell);
+            Assert.Equal(cell, grid.GetCell(firstPosition));
+
+            grid.MoveCell(firstPosition, secondPosition);
+            Assert.Null(grid.GetCell(firstPosition));
+            Assert.Equal(cell, grid.GetCell(secondPosition));
+        }
     }
 }
