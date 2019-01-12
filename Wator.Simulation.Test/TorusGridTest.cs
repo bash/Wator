@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSubstitute;
-using Wator.Simulation.GridCell;
+using Wator.Simulation.Grid;
 using Wator.Simulation.Organism;
 using Xunit;
 
@@ -29,9 +29,9 @@ namespace Wator.Simulation.Test
         {
             var grid = new TorusGrid(100, 100);
             var position = new Position(x, y);
-            var organism = Substitute.For<IOrganism>();
+            var gridCell = new GridCell(OrganismKind.Fish, Substitute.For<IOrganism>());
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => grid.SetCell(position, organism));
+            Assert.Throws<ArgumentOutOfRangeException>(() => grid.SetCell(position, gridCell));
         }
 
         [Fact]
@@ -39,19 +39,19 @@ namespace Wator.Simulation.Test
         {
             var grid = new TorusGrid(100, 100);
 
-            var organism1 = Substitute.For<IOrganism>();
+            var cell1 = new GridCell(OrganismKind.Fish, Substitute.For<IOrganism>());
             var position1 = new Position(30, 30);
-            var organism2 = Substitute.For<IOrganism>();
+            var cell2 = new GridCell(OrganismKind.Fish, Substitute.For<IOrganism>());
             var position2 = new Position(10, 20);
 
-            grid.SetCell(position1, organism1);
-            grid.SetCell(position2, organism2);
+            grid.SetCell(position1, cell1);
+            grid.SetCell(position2, cell2);
 
             var occupiedCells = grid.GetOccupiedCells().ToList();
-            var expected = new List<Occupied>(new Occupied[]
+            var expected = new List<(Position, GridCell)>(new[]
             {
-                new Occupied(position1, organism1),
-                new Occupied(position2, organism2),
+                (position1, cell1),
+                (position2, cell2),
             });
 
             Assert.Equal(expected, occupiedCells);
@@ -61,10 +61,11 @@ namespace Wator.Simulation.Test
         public void EmptyCellWorks()
         {
             var grid = new TorusGrid(100, 100);
-            
-            grid.SetCell(new Position(42, 42), Substitute.For<IOrganism>());
+            var cell = new GridCell(OrganismKind.Fish, Substitute.For<IOrganism>());
+
+            grid.SetCell(new Position(42, 42), cell);
             grid.EmptyCell(new Position(42, 42));
-            
+
             Assert.Equal(0, grid.GetOccupiedCells().Count());
         }
     }
