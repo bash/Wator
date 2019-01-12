@@ -1,4 +1,3 @@
-using System;
 using Wator.Simulation.Organism;
 
 namespace Wator.Simulation.Grid

@@ -4,7 +4,8 @@
     {
         private static void Main(string[] args)
         {
-            var simulation = new Simulation.Simulation(100, 100);
+            var grid = new Simulation.TorusGrid(100, 100);
+            var simulation = new Simulation.Simulation(grid);
         }
     }
 }

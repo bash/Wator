@@ -1,11 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Linq;
 using Wator.Simulation.Grid;
-using Wator.Simulation.GridCell;
-using Wator.Simulation.Organism;
 
 namespace Wator.Simulation
 {
@@ -18,7 +14,7 @@ namespace Wator.Simulation
 
         public int Height { get; }
 
-        private readonly Dictionary<Position, IOrganism> occupiedCells = new Dictionary<Position, IOrganism>();
+        private readonly Dictionary<Position, GridCell> occupiedCells = new Dictionary<Position, GridCell>();
 
         public TorusGrid(int width, int height)
         {
@@ -36,30 +32,26 @@ namespace Wator.Simulation
             Height = height;
         }
 
-        public IEnumerable<(Position, IOrganism?)> GetNeighbours(Position position)
-        {
-            throw new NotImplementedException();
-        }
-
-        [Pure]
-        public IEnumerable<(Position, IOrganism)> GetOccupiedCells()
+        public IEnumerable<(Position, GridCell)> GetOccupiedCells()
         {
             return occupiedCells.Select(pair => (pair.Key, pair.Value));
         }
 
-        public void SetCell(Position position, IOrganism organism)
+        public IEnumerable<(Position, GridCell?)> GetNeighbours(Position position)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetCell(Position position, GridCell gridCell)
         {
             if (position.X >= Width || position.Y >= Height)
             {
                 throw new ArgumentOutOfRangeException(nameof(position), "position must be inside grid");
             }
 
-            occupiedCells.Add(position, organism);
+            occupiedCells.Add(position, gridCell);
         }
 
-        public void EmptyCell(Position position)
-        {
-            occupiedCells.Remove(position);
-        }
+        public void EmptyCell(Position position) => occupiedCells.Remove(position);
     }
 }

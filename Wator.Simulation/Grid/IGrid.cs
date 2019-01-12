@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using Wator.Simulation.GridCell;
-using Wator.Simulation.Organism;
 
 namespace Wator.Simulation.Grid
 {
