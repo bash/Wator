@@ -21,5 +21,7 @@ namespace Wator.Simulation.Grid
         void SetCell(Position position, GridCell grid);
 
         void EmptyCell(Position position);
+
+        void MoveCell(Position currentPosition, Position newPosition);
     }
 }
