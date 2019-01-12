@@ -42,9 +42,9 @@ namespace Wator.Simulation
         }
 
         [Pure]
-        public IEnumerable<Occupied> GetOccupiedCells()
+        public IEnumerable<(Position, IOrganism)> GetOccupiedCells()
         {
-            return occupiedCells.Select(pair => new Occupied(pair.Key, pair.Value));
+            return occupiedCells.Select(pair => (pair.Key, pair.Value));
         }
 
         public void SetCell(Position position, IOrganism organism)

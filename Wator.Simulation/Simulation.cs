@@ -1,19 +1,17 @@
 using System.Collections.Generic;
+using Wator.Simulation.Grid;
 using Wator.Simulation.Organism;
 
 namespace Wator.Simulation
 {
     public class Simulation : ISimulation
     {
-        public int Width { get; }
-
-        public int Height { get; }
-
-        public Simulation(int width, int height)
+        public Simulation(IGrid grid)
         {
-            Width = width;
-            Height = height;
+            Grid = grid;
         }
+
+        private IGrid Grid { get; }
 
         public void Step()
         {

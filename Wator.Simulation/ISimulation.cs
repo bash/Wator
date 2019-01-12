@@ -20,7 +20,7 @@ namespace Wator.Simulation
         /// </summary>
         void Step();
 
-        void AddOrganism(Position position, IOrganism organism);
+        void AddOrganism(Position position, IOrganism organism, OrganismKind kind);
 
         void RemoveOrganism(Position position);
 

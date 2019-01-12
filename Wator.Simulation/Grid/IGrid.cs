@@ -16,11 +16,11 @@ namespace Wator.Simulation.Grid
         /// </summary>
         int Height { get; }
 
-        IEnumerable<(Position, IOrganism?)> GetNeighbours(Position position);
+        IEnumerable<(Position, GridCell?)> GetNeighbours(Position position);
 
-        IEnumerable<Occupied> GetOccupiedCells();
+        IEnumerable<(Position, GridCell)> GetOccupiedCells();
 
-        void SetCell(Position position, IOrganism organism);
+        void SetCell(Position position, GridCell grid);
 
         void EmptyCell(Position position);
     }
