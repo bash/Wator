@@ -81,7 +81,7 @@ namespace Wator.Simulation.Test
             Assert.Equal(cell, grid.GetCell(firstPosition));
 
             grid.MoveCell(firstPosition, secondPosition);
-            Assert.Null(grid.GetCell(firstPosition));
+            Assert.False(grid.IsCellOccupied(firstPosition));
             Assert.Equal(cell, grid.GetCell(secondPosition));
         }
 
@@ -94,6 +94,7 @@ namespace Wator.Simulation.Test
 
             grid.SetCell(position, cell);
             Assert.Equal(cell, grid.GetCell(position));
+            Assert.True(grid.IsCellOccupied(position));
         }
     }
 }

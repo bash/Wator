@@ -56,9 +56,16 @@ namespace Wator.Simulation
 
         public void MoveCell(Position currentPosition, Position newPosition)
         {
-            throw new NotImplementedException();
+            if (occupiedCells.ContainsKey(currentPosition))
+            {
+                var cell = occupiedCells[currentPosition];
+                occupiedCells.Add(newPosition, cell);
+                occupiedCells.Remove(currentPosition);
+            }
         }
 
-        public GridCell? GetCell(Position position) => occupiedCells[position];
+        public GridCell GetCell(Position position) => occupiedCells[position];
+
+        public bool IsCellOccupied(Position position) => occupiedCells.ContainsKey(position);
     }
 }
