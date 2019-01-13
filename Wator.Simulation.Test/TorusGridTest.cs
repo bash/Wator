@@ -96,5 +96,66 @@ namespace Wator.Simulation.Test
             Assert.Equal(cell, grid.GetCell(position));
             Assert.True(grid.IsCellOccupied(position));
         }
+
+        [Theory]
+        [InlineData(49, 49)]
+        [InlineData(49, 50)]
+        [InlineData(49, 51)]
+        [InlineData(50, 49)]
+        [InlineData(50, 51)]
+        [InlineData(51, 49)]
+        [InlineData(51, 50)]
+        [InlineData(51, 51)]
+        public void GetNeighboursReturnsNeighbouringCellsFromAllSides(int neighbourX, int neighbourY)
+        {
+            var grid = new TorusGrid(100, 100);
+            var position = new Position(50, 50);
+            var neighbourPosition = new Position(neighbourX, neighbourY);
+            var neighbourCell = GetGridCell();
+
+            grid.SetCell(neighbourPosition, neighbourCell);
+
+            var actualNeigbours = grid.GetNeighbours(position).ToList();
+            var expectedNeighbours = new List<(Position, GridCell?)> { (neighbourPosition, neighbourCell) };
+
+            Assert.Equal(expectedNeighbours, actualNeigbours);
+        }
+
+        [Theory]
+        [InlineData(99, 40, 0, 40)]
+        [InlineData(0, 40, 99, 40)]
+        public void GetNeighboursIncludesCellFromOppositeSideOfGrid(int x, int y, int neighbourX, int neighbourY)
+        {
+            var grid = new TorusGrid(100, 100);
+            var position = new Position(x, y);
+            var neighbourPosition = new Position(neighbourX, neighbourY);
+            var neighbourCell = GetGridCell();
+
+            grid.SetCell(neighbourPosition, neighbourCell);
+
+            var expectedNeighbours = new List<(Position, GridCell?)> { (neighbourPosition, neighbourCell) };
+            var actualNeighbours = grid.GetNeighbours(position);
+
+            Assert.Equal(expectedNeighbours, actualNeighbours);
+        }
+
+        [Theory]
+        [InlineData(0, 40)]
+        [InlineData(99, 40)]
+        [InlineData(12, 10)]
+        public void GetNeighboursDoesNotIncludeCellsFarAway(int neighbourX, int neighbourY)
+        {
+            var grid = new TorusGrid(100, 100);
+            var position = new Position(10, 10);
+            var neighbourPosition = new Position(neighbourX, neighbourY);
+            var neighbourCell = GetGridCell();
+
+            grid.SetCell(neighbourPosition, neighbourCell);
+            grid.SetCell(position, GetGridCell());
+
+            Assert.Equal(0, grid.GetNeighbours(position).Count());
+        }
+
+        private GridCell GetGridCell() => new GridCell(OrganismKind.Fish, Substitute.For<IOrganism>());
     }
 }
