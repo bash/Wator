@@ -5,7 +5,7 @@ namespace Wator.Simulation.Organism
 {
     public class Shark : IOrganism
     {
-        IEnumerable<IAction> IOrganism.Step()
+        public IEnumerable<IAction> Step()
         {
             throw new System.NotImplementedException();
         }
