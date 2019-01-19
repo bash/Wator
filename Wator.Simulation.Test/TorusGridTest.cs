@@ -13,8 +13,12 @@ namespace Wator.Simulation.Test
         [Theory]
         [InlineData(-10, 4)]
         [InlineData(4, -10)]
+        [InlineData(0, 0)]
         [InlineData(0, 5)]
         [InlineData(5, 0)]
+        [InlineData(1, 1)]
+        [InlineData(4, 1)]
+        [InlineData(1, 4)]
         public void ConstructorThrowsForInvalidValues(int width, int height)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new TorusGrid(width, height));

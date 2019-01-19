@@ -14,14 +14,14 @@ namespace Wator.Simulation
 
         public TorusGrid(int width, int height)
         {
-            if (width <= 0)
+            if (width <= 1)
             {
-                throw new ArgumentOutOfRangeException(nameof(width), "width must be greater than zero");
+                throw new ArgumentOutOfRangeException(nameof(width), "width must be greater than one");
             }
 
-            if (height <= 0)
+            if (height <= 1)
             {
-                throw new ArgumentOutOfRangeException(nameof(height), "height must be greater than zero");
+                throw new ArgumentOutOfRangeException(nameof(height), "height must be greater than one");
             }
 
             Width = width;
