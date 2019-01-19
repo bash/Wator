@@ -45,5 +45,10 @@ namespace Wator.Simulation
                 return (X * 397) ^ Y;
             }
         }
+
+        public override string ToString()
+        {
+            return $"Position({X}, {Y})";
+        }
     }
 }
