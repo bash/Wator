@@ -34,7 +34,7 @@ namespace Wator.Simulation
 
         public IEnumerable<(Position, GridCell)> GetOccupiedNeighbours(Position position)
         {
-            return GetNeighbourPositions(position)
+            return GetNeighbouringPositions(position)
                 .Where(IsCellOccupied)
                 .Select(neighbour => (neighbour, GetCell(neighbour)));
         }
@@ -77,7 +77,7 @@ namespace Wator.Simulation
 
         public bool IsCellOccupied(Position position) => occupiedCells.ContainsKey(position);
 
-        private IEnumerable<Position> GetNeighbourPositions(Position position)
+        private IEnumerable<Position> GetNeighbouringPositions(Position position)
         {
             return new List<Position>
             {
@@ -94,10 +94,10 @@ namespace Wator.Simulation
 
         private Position GetPositionWithRespectToTorus(int x, int y)
         {
-            var correctedX = GetComponentWithRespectToTorusSize(x, Width);
-            var correctedY = GetComponentWithRespectToTorusSize(y, Height);
+            var adjustedX = GetComponentWithRespectToTorusSize(x, Width);
+            var adjustedY = GetComponentWithRespectToTorusSize(y, Height);
 
-            return new Position(correctedX, correctedY);
+            return new Position(adjustedX, adjustedY);
         }
 
         private int GetComponentWithRespectToTorusSize(int component, int maximum)
