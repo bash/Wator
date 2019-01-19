@@ -161,6 +161,62 @@ namespace Wator.Simulation.Test
             Assert.Equal(0, grid.GetOccupiedNeighbours(position).Count());
         }
 
+        [Fact]
+        public void GetFreeNeighboursReturnsAllNeighbours()
+        {
+            var grid = new TorusGrid(6, 3);
+            var position = new Position(2, 1);
+
+            var expectedNeighbours = new List<Position>
+            {
+                new Position(1, 0),
+                new Position(2, 0),
+                new Position(3, 0),
+                new Position(1, 1),
+                new Position(3, 1),
+                new Position(1, 2),
+                new Position(2, 2),
+                new Position(3, 2),
+            };
+
+            Assert.Equal(expectedNeighbours, grid.GetFreeNeighbours(position).ToList());
+        }
+
+        [Theory]
+        [InlineData(0, 0)]
+        [InlineData(1, 0)]
+        [InlineData(2, 0)]
+        [InlineData(0, 1)]
+        [InlineData(2, 1)]
+        [InlineData(0, 2)]
+        [InlineData(1, 2)]
+        [InlineData(2, 2)]
+        public void GetFreeNeighboursDoesNotReturnOccupiedNeighbours(int occupiedX, int occupiedY)
+        {
+            var occupiedPosition = new Position(occupiedX, occupiedY);
+
+            var grid = new TorusGrid(3, 3);
+            grid.SetCell(new Position(occupiedX, occupiedY), GetGridCell());
+
+            var expectedNeighbours = new List<Position>
+            {
+                new Position(0, 0),
+                new Position(1, 0),
+                new Position(2, 0),
+                new Position(0, 1),
+                new Position(2, 1),
+                new Position(0, 2),
+                new Position(1, 2),
+                new Position(2, 2),
+            };
+
+            expectedNeighbours.Remove(occupiedPosition);
+
+            var actualNeighbours = grid.GetFreeNeighbours(new Position(1, 1)).ToList();
+
+            Assert.Equal(expectedNeighbours, actualNeighbours);
+        }
+
         private static GridCell GetGridCell() => new GridCell(OrganismKind.Fish, Substitute.For<IOrganism>());
     }
 }

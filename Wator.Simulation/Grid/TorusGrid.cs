@@ -41,7 +41,8 @@ namespace Wator.Simulation
 
         public IEnumerable<Position> GetFreeNeighbours(Position position)
         {
-            throw new NotImplementedException();
+            return GetNeighbouringPositions(position)
+                .Where(neighbouringPosition => !IsCellOccupied(neighbouringPosition));
         }
 
         public IEnumerable<(Position, GridCell)> GetOccupiedCells()
