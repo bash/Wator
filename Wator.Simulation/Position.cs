@@ -3,7 +3,7 @@ using System;
 namespace Wator.Simulation
 {
     [Equals]
-    public class Position : IEquatable<Position>
+    public class Position
     {
         public Position(int x, int y)
         {

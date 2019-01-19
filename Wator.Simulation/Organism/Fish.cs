@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Wator.Simulation.Action;
 using Wator.Simulation.OrganismEnvironment;
@@ -6,21 +7,55 @@ namespace Wator.Simulation.Organism
 {
     public class Fish : IOrganism
     {
-        public Fish(IRandomElementPicker randomElementPicker)
+        private delegate IAction UnoccupiedCellMapper(Position destination);
+
+        public Fish(IRandomElementPicker randomElementPicker, int stepsUntilReproduction)
         {
-            this.RandomElementPicker = randomElementPicker;
+            if (stepsUntilReproduction < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(stepsUntilReproduction),
+                    "stepsUntilReproduction should not be negative");
+            }
+
+            RandomElementPicker = randomElementPicker;
+            StepsUntilReproduction = stepsUntilReproduction;
         }
 
         private IRandomElementPicker RandomElementPicker { get; }
 
-        private int StepsSinceLastReproduction { get; } = 0;
+        private int StepsSinceLastReproduction { get; set; } = 0;
+
+        private int StepsUntilReproduction { get; }
 
         public IAction? Step(OrganismKind ownKind, IOrganismEnvironment environment)
         {
+            StepsSinceLastReproduction += 1;
+
+            if (ShouldReproduce())
+            {
+                return Reproduce(ownKind, environment);
+            }
+
             return Move(environment);
         }
 
-        private IAction Move(IOrganismEnvironment environment)
+        private IAction? Reproduce(OrganismKind ownKind, IOrganismEnvironment environment)
+        {
+            return WithRandomUnoccupiedCell(environment, destination =>
+            {
+                StepsSinceLastReproduction = 0;
+
+                return new Copy(destination, Clone(), ownKind);
+            });
+        }
+
+        private IAction? Move(IOrganismEnvironment environment)
+        {
+            return WithRandomUnoccupiedCell(environment, destination => new Move(destination));
+        }
+
+        private IAction? WithRandomUnoccupiedCell(IOrganismEnvironment environment,
+            UnoccupiedCellMapper unoccupiedCellMapper)
         {
             var unoccupiedNeighbours = environment.GetFreeNeighbours().ToList();
 
@@ -31,7 +66,17 @@ namespace Wator.Simulation.Organism
 
             var destination = RandomElementPicker.PickRandomElement(unoccupiedNeighbours);
 
-            return new Move(destination);
+            return unoccupiedCellMapper(destination);
+        }
+
+        private bool ShouldReproduce()
+        {
+            return StepsSinceLastReproduction >= StepsUntilReproduction;
+        }
+
+        private Fish Clone()
+        {
+            return new Fish(RandomElementPicker, StepsUntilReproduction);
         }
     }
 }
