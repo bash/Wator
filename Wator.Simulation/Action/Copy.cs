@@ -1,6 +1,6 @@
 namespace Wator.Simulation.Action
 {
-    internal class Copy
+    public class Copy
     {
         public Position Destination { get; }
 

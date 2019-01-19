@@ -1,6 +1,6 @@
 namespace Wator.Simulation.Action
 {
-    internal class Move : IAction
+    public class Move : IAction
     {
         public Position Destination { get; }
 
