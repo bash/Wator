@@ -34,7 +34,9 @@ namespace Wator.Simulation
 
         public IEnumerable<(Position, GridCell)> GetOccupiedNeighbours(Position position)
         {
-            throw new NotImplementedException();
+            return GetNeighbourPositions(position)
+                .Where(IsCellOccupied)
+                .Select(neighbour => (neighbour, GetCell(neighbour)));
         }
 
         public IEnumerable<Position> GetFreeNeighbours(Position position)
@@ -61,16 +63,49 @@ namespace Wator.Simulation
 
         public void MoveCell(Position currentPosition, Position newPosition)
         {
-            if (occupiedCells.ContainsKey(currentPosition))
-            {
-                var cell = occupiedCells[currentPosition];
-                occupiedCells.Add(newPosition, cell);
-                occupiedCells.Remove(currentPosition);
-            }
+            var cell = occupiedCells[currentPosition];
+            occupiedCells.Add(newPosition, cell);
+            occupiedCells.Remove(currentPosition);
         }
 
         public GridCell GetCell(Position position) => occupiedCells[position];
 
         public bool IsCellOccupied(Position position) => occupiedCells.ContainsKey(position);
+
+        private IEnumerable<Position> GetNeighbourPositions(Position position)
+        {
+            return new List<Position>
+            {
+                GetPositionWithRespectToTorus(position.X - 1, position.Y - 1),
+                GetPositionWithRespectToTorus(position.X, position.Y - 1),
+                GetPositionWithRespectToTorus(position.X + 1, position.Y - 1),
+                GetPositionWithRespectToTorus(position.X - 1, position.Y),
+                GetPositionWithRespectToTorus(position.X + 1, position.Y),
+                GetPositionWithRespectToTorus(position.X - 1, position.Y + 1),
+                GetPositionWithRespectToTorus(position.X, position.Y + 1),
+                GetPositionWithRespectToTorus(position.X + 1, position.Y + 1),
+            };
+        }
+
+        private Position GetPositionWithRespectToTorus(int x, int y)
+        {
+            var correctedX = GetComponentWithRespectToTorusSize(x, Width);
+            var correctedY = GetComponentWithRespectToTorusSize(y, Height);
+
+            return new Position(correctedX, correctedY);
+        }
+
+        private int GetComponentWithRespectToTorusSize(int component, int maximum)
+        {
+            switch (component)
+            {
+                case var _ when component < 0:
+                    return maximum + component;
+                case var _ when component >= maximum:
+                    return maximum - component;
+                default:
+                    return component;
+            }
+        }
     }
 }
