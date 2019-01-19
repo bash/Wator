@@ -120,7 +120,7 @@ namespace Wator.Simulation.Test
             grid.SetCell(neighbourPosition, neighbourCell);
 
             var actualNeighbours = grid.GetOccupiedNeighbours(position).ToList();
-            var expectedNeighbours = new List<(Position, GridCell)> { (neighbourPosition, neighbourCell) };
+            var expectedNeighbours = new List<(Position, GridCell)> {(neighbourPosition, neighbourCell)};
 
             Assert.Equal(expectedNeighbours, actualNeighbours);
         }
@@ -128,7 +128,8 @@ namespace Wator.Simulation.Test
         [Theory]
         [InlineData(99, 40, 0, 40)]
         [InlineData(0, 40, 99, 40)]
-        public void GetOccupiedNeighboursIncludesCellFromOppositeSideOfGrid(int x, int y, int neighbourX, int neighbourY)
+        public void GetOccupiedNeighboursIncludesCellFromOppositeSideOfGrid(int x, int y, int neighbourX,
+            int neighbourY)
         {
             var grid = new TorusGrid(100, 100);
             var position = new Position(x, y);
@@ -137,7 +138,7 @@ namespace Wator.Simulation.Test
 
             grid.SetCell(neighbourPosition, neighbourCell);
 
-            var expectedNeighbours = new List<(Position, GridCell)> { (neighbourPosition, neighbourCell) };
+            var expectedNeighbours = new List<(Position, GridCell)> {(neighbourPosition, neighbourCell)};
             var actualNeighbours = grid.GetOccupiedNeighbours(position);
 
             Assert.Equal(expectedNeighbours, actualNeighbours);
