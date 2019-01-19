@@ -14,7 +14,9 @@ namespace Wator.Simulation.Grid
         /// </summary>
         int Height { get; }
 
-        IEnumerable<(Position, GridCell?)> GetNeighbours(Position position);
+        IEnumerable<(Position, GridCell)> GetOccupiedNeighbours(Position position);
+
+        IEnumerable<Position> GetFreeNeighbours(Position position);
 
         IEnumerable<(Position, GridCell)> GetOccupiedCells();
 

@@ -32,14 +32,19 @@ namespace Wator.Simulation
             Height = height;
         }
 
+        public IEnumerable<(Position, GridCell)> GetOccupiedNeighbours(Position position)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Position> GetFreeNeighbours(Position position)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<(Position, GridCell)> GetOccupiedCells()
         {
             return occupiedCells.Select(pair => (pair.Key, pair.Value));
-        }
-
-        public IEnumerable<(Position, GridCell?)> GetNeighbours(Position position)
-        {
-            throw new NotImplementedException();
         }
 
         public void SetCell(Position position, GridCell gridCell)

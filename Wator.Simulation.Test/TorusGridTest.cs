@@ -106,7 +106,7 @@ namespace Wator.Simulation.Test
         [InlineData(51, 49)]
         [InlineData(51, 50)]
         [InlineData(51, 51)]
-        public void GetNeighboursReturnsNeighbouringCellsFromAllSides(int neighbourX, int neighbourY)
+        public void GetOccupiedNeighboursReturnsNeighbouringCellsFromAllSides(int neighbourX, int neighbourY)
         {
             var grid = new TorusGrid(100, 100);
             var position = new Position(50, 50);
@@ -115,16 +115,16 @@ namespace Wator.Simulation.Test
 
             grid.SetCell(neighbourPosition, neighbourCell);
 
-            var actualNeigbours = grid.GetNeighbours(position).ToList();
-            var expectedNeighbours = new List<(Position, GridCell?)> { (neighbourPosition, neighbourCell) };
+            var actualNeighbours = grid.GetOccupiedNeighbours(position).ToList();
+            var expectedNeighbours = new List<(Position, GridCell)> { (neighbourPosition, neighbourCell) };
 
-            Assert.Equal(expectedNeighbours, actualNeigbours);
+            Assert.Equal(expectedNeighbours, actualNeighbours);
         }
 
         [Theory]
         [InlineData(99, 40, 0, 40)]
         [InlineData(0, 40, 99, 40)]
-        public void GetNeighboursIncludesCellFromOppositeSideOfGrid(int x, int y, int neighbourX, int neighbourY)
+        public void GetOccupiedNeighboursIncludesCellFromOppositeSideOfGrid(int x, int y, int neighbourX, int neighbourY)
         {
             var grid = new TorusGrid(100, 100);
             var position = new Position(x, y);
@@ -133,8 +133,8 @@ namespace Wator.Simulation.Test
 
             grid.SetCell(neighbourPosition, neighbourCell);
 
-            var expectedNeighbours = new List<(Position, GridCell?)> { (neighbourPosition, neighbourCell) };
-            var actualNeighbours = grid.GetNeighbours(position);
+            var expectedNeighbours = new List<(Position, GridCell)> { (neighbourPosition, neighbourCell) };
+            var actualNeighbours = grid.GetOccupiedNeighbours(position);
 
             Assert.Equal(expectedNeighbours, actualNeighbours);
         }
@@ -143,7 +143,7 @@ namespace Wator.Simulation.Test
         [InlineData(0, 40)]
         [InlineData(99, 40)]
         [InlineData(12, 10)]
-        public void GetNeighboursDoesNotIncludeCellsFarAway(int neighbourX, int neighbourY)
+        public void GetOccupiedNeighboursDoesNotIncludeCellsFarAway(int neighbourX, int neighbourY)
         {
             var grid = new TorusGrid(100, 100);
             var position = new Position(10, 10);
@@ -153,9 +153,9 @@ namespace Wator.Simulation.Test
             grid.SetCell(neighbourPosition, neighbourCell);
             grid.SetCell(position, GetGridCell());
 
-            Assert.Equal(0, grid.GetNeighbours(position).Count());
+            Assert.Equal(0, grid.GetOccupiedNeighbours(position).Count());
         }
 
-        private GridCell GetGridCell() => new GridCell(OrganismKind.Fish, Substitute.For<IOrganism>());
+        private static GridCell GetGridCell() => new GridCell(OrganismKind.Fish, Substitute.For<IOrganism>());
     }
 }
