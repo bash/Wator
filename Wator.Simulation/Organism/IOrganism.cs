@@ -1,10 +1,10 @@
-using System.Collections.Generic;
 using Wator.Simulation.Action;
+using Wator.Simulation.OrganismEnvironment;
 
 namespace Wator.Simulation.Organism
 {
     public interface IOrganism
     {
-        IEnumerable<IAction> Step();
+        IAction Step(OrganismKind ownKind, IOrganismEnvironment environment);
     }
 }
