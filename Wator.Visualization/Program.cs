@@ -1,4 +1,4 @@
-﻿namespace Wator.Visualization
+namespace Wator.Visualization
 {
     internal static class Program
     {
