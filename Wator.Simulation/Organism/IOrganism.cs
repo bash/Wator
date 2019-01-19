@@ -5,6 +5,6 @@ namespace Wator.Simulation.Organism
 {
     public interface IOrganism
     {
-        IAction Step(OrganismKind ownKind, IOrganismEnvironment environment);
+        IAction? Step(OrganismKind ownKind, IOrganismEnvironment environment);
     }
 }

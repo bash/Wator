@@ -5,7 +5,7 @@ namespace Wator.Simulation.Organism
 {
     public class Shark : IOrganism
     {
-        public IAction Step(OrganismKind ownKind, IOrganismEnvironment environment)
+        public IAction? Step(OrganismKind ownKind, IOrganismEnvironment environment)
         {
             throw new System.NotImplementedException();
         }
