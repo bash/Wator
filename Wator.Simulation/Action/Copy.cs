@@ -2,7 +2,8 @@ using Wator.Simulation.Organism;
 
 namespace Wator.Simulation.Action
 {
-    public class Copy
+    [Equals]
+    public class Copy : IAction
     {
         public Copy(Position destination, IOrganism organism, OrganismKind organismKind)
         {
