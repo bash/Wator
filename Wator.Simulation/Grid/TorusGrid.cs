@@ -51,12 +51,17 @@ namespace Wator.Simulation
 
         public void SetCell(Position position, GridCell gridCell)
         {
-            if (position.X >= Width || position.Y >= Height)
+            if (!IsPositionWithinGrid(position))
             {
-                throw new ArgumentOutOfRangeException(nameof(position), "position must be inside grid");
+                throw new ArgumentOutOfRangeException(nameof(position), "Position must be inside grid");
             }
 
             occupiedCells.Add(position, gridCell);
+        }
+
+        private bool IsPositionWithinGrid(Position position)
+        {
+            return position.X < Width && position.Y < Height;
         }
 
         public void EmptyCell(Position position) => occupiedCells.Remove(position);
