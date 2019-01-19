@@ -10,10 +10,6 @@ namespace Wator.Simulation
     /// </summary>
     public class TorusGrid : IGrid
     {
-        public int Width { get; }
-
-        public int Height { get; }
-
         private readonly Dictionary<Position, GridCell> occupiedCells = new Dictionary<Position, GridCell>();
 
         public TorusGrid(int width, int height)
@@ -31,6 +27,10 @@ namespace Wator.Simulation
             Width = width;
             Height = height;
         }
+
+        public int Width { get; }
+
+        public int Height { get; }
 
         public IEnumerable<(Position, GridCell)> GetOccupiedNeighbours(Position position)
         {
