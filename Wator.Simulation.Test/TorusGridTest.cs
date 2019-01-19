@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using NSubstitute;
+using Moq;
 using Wator.Simulation.Grid;
 using Wator.Simulation.Organism;
 using Xunit;
@@ -33,7 +33,7 @@ namespace Wator.Simulation.Test
         {
             var grid = new TorusGrid(100, 100);
             var position = new Position(x, y);
-            var gridCell = new GridCell(OrganismKind.Fish, Substitute.For<IOrganism>());
+            var gridCell = GetGridCell();
 
             Assert.Throws<ArgumentOutOfRangeException>(() => grid.SetCell(position, gridCell));
         }
@@ -43,9 +43,9 @@ namespace Wator.Simulation.Test
         {
             var grid = new TorusGrid(100, 100);
 
-            var cell1 = new GridCell(OrganismKind.Fish, Substitute.For<IOrganism>());
+            var cell1 = GetGridCell();
             var position1 = new Position(30, 30);
-            var cell2 = new GridCell(OrganismKind.Fish, Substitute.For<IOrganism>());
+            var cell2 = GetGridCell();
             var position2 = new Position(10, 20);
 
             grid.SetCell(position1, cell1);
@@ -65,7 +65,7 @@ namespace Wator.Simulation.Test
         public void EmptyCellWorks()
         {
             var grid = new TorusGrid(100, 100);
-            var cell = new GridCell(OrganismKind.Fish, Substitute.For<IOrganism>());
+            var cell = GetGridCell();
 
             grid.SetCell(new Position(42, 42), cell);
             grid.EmptyCell(new Position(42, 42));
@@ -77,7 +77,7 @@ namespace Wator.Simulation.Test
         public void MoveCellWorks()
         {
             var grid = new TorusGrid(100, 100);
-            var cell = new GridCell(OrganismKind.Fish, Substitute.For<IOrganism>());
+            var cell = GetGridCell();
             var firstPosition = new Position(30, 30);
             var secondPosition = new Position(10, 10);
 
@@ -93,7 +93,7 @@ namespace Wator.Simulation.Test
         public void SettingAndRetrievingCellWorks()
         {
             var grid = new TorusGrid(100, 100);
-            var cell = new GridCell(OrganismKind.Fish, Substitute.For<IOrganism>());
+            var cell = GetGridCell();
             var position = new Position(20, 32);
 
             grid.SetCell(position, cell);
@@ -217,6 +217,6 @@ namespace Wator.Simulation.Test
             Assert.Equal(expectedNeighbours, actualNeighbours);
         }
 
-        private static GridCell GetGridCell() => new GridCell(OrganismKind.Fish, Substitute.For<IOrganism>());
+        private static GridCell GetGridCell() => new GridCell(OrganismKind.Fish, new Mock<IOrganism>().Object);
     }
 }

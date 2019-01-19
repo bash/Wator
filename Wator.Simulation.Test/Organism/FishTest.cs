@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Moq;
-using NSubstitute;
 using Wator.Simulation.Action;
 using Wator.Simulation.Organism;
 using Wator.Simulation.OrganismEnvironment;
