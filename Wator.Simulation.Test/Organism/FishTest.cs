@@ -81,19 +81,19 @@ namespace Wator.Simulation.Test.Organism
             var organismKind = OrganismKind.Fish;
 
             environment.SetupSequence(mock => mock.GetFreeNeighbours())
-                .Returns(new List<Position> {new Position(1, 1)})
-                .Returns(new List<Position> {new Position(1, 2)})
-                .Returns(new List<Position> {new Position(1, 3)});
+                .Returns(new List<Position> { new Position(1, 1) })
+                .Returns(new List<Position> { new Position(1, 2) })
+                .Returns(new List<Position> { new Position(1, 3) });
 
-            randomElementPicker.Setup(mock => mock.PickRandomElement(new List<Position> {new Position(1, 1)}))
+            randomElementPicker.Setup(mock => mock.PickRandomElement(new List<Position> { new Position(1, 1) }))
                 .Returns(new Position(1, 1));
-            
-            randomElementPicker.Setup(mock => mock.PickRandomElement(new List<Position> {new Position(1, 2)}))
+
+            randomElementPicker.Setup(mock => mock.PickRandomElement(new List<Position> { new Position(1, 2) }))
                 .Returns(new Position(1, 2));
-            
-            randomElementPicker.Setup(mock => mock.PickRandomElement(new List<Position> {new Position(1, 3)}))
+
+            randomElementPicker.Setup(mock => mock.PickRandomElement(new List<Position> { new Position(1, 3) }))
                 .Returns(new Position(1, 3));
-            
+
             Assert.Equal(new Move(new Position(1, 1)), fish.Step(organismKind, environment.Object));
             Assert.Equal(new Move(new Position(1, 2)), fish.Step(organismKind, environment.Object));
 
