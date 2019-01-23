@@ -6,7 +6,7 @@ using Wator.Simulation.Grid;
 using Wator.Simulation.Organism;
 using Xunit;
 
-namespace Wator.Simulation.Test
+namespace Wator.Simulation.Test.Grid
 {
     public class TorusGridTest
     {

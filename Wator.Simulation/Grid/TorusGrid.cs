@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Wator.Simulation.Grid;
 
-namespace Wator.Simulation
+namespace Wator.Simulation.Grid
 {
     /// <summary>
     /// A grid with its ends connected.
