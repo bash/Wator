@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Wator.Simulation.Organism
 {
-    public interface IReproducableOrganism : IOrganism
+    public interface IReproducibleOrganism : IOrganism
     {
-        IReproducableOrganism Clone();
+        IReproducibleOrganism Clone();
     }
 }
